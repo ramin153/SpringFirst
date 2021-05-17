@@ -2,6 +2,7 @@ package com.example.SpringFirst.domain;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,12 @@ public class Book {
     @JoinTable(name = "author_book",
     joinColumns = @JoinColumn(name = "book_id"),
     inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<>();
+
+    public Book(String title, String isBn) {
+        this.title = title;
+        this.isBn = isBn;
+    }
 
     public Book(String title, String isBn, Set<Author> authors) {
         this.title = title;
